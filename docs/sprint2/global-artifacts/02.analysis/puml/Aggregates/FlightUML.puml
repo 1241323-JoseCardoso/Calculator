@@ -1,0 +1,118 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+skinparam classFontSize 13
+skinparam shadowing false
+
+skinparam class {
+    BackgroundColor<<Aggregate Root>> #E3F2FD
+    BorderColor<<Aggregate Root>> #1565C0
+    FontColor<<Aggregate Root>> #1565C0
+    HeaderBackgroundColor<<Aggregate Root>> #BBDEFB
+
+    BackgroundColor<<Entity>> #FFF8E1
+    BorderColor<<Entity>> #F57F17
+    FontColor<<Entity>> #F57F17
+    HeaderBackgroundColor<<Entity>> #FFE082
+
+    BackgroundColor<<Value Object>> #F1F8E9
+    BorderColor<<Value Object>> #558B2F
+    FontColor<<Value Object>> #558B2F
+    HeaderBackgroundColor<<Value Object>> #DCEDC8
+}
+
+skinparam package {
+    BackgroundColor #FAFAFA
+    BorderColor #BDBDBD
+    BorderStyle dashed
+    FontSize 14
+}
+
+
+skinparam ArrowColor #444441
+
+package "Flight Aggregate" <<Frame>> {
+
+    class Flight <<Aggregate Root>> {
+        - flightID : FlightID
+        - flightType : FlightType
+        - schedule : Schedule
+        - routeCode : RouteCode
+    }
+
+    class FlightID <<Value Object>>{
+        - code : String
+    }
+
+    enum FlightType <<Value Object>>{
+        REGULAR
+        CHARTER
+    }
+
+    abstract class Schedule <<Value Object>>{}
+
+    class ScheduleEntry <<Value Object>>{
+        - dayOfTheWeek : DayOfWeek
+        - departureTime : LocalDateTime
+        - arrivalTime : LocalDateTime
+    }
+
+    class CharterSchedule <<Value Object>>{
+        - departureTime : LocalDateTime
+        - arrivalTime : LocalDateTime
+    }
+
+    class RegularSchedule <<Value Object>>{
+        - entry : ScheduleEntry
+    }
+
+    class FlightPlan <<Entity>> {
+        - flightPlanID : FlightPlanID
+        - status : FlightPlanStatus
+        - aircraftRegistration : AircraftRegistration
+        - pilotID : PilotID
+        - fuelQuantity : FuelQuantity
+        - plannedDeparture : LocalDateTime
+        - plannedArrival : LocalDateTime
+    }
+
+    class FlightPlanID <<Value Object>>{
+        - number : String
+    }
+
+    class FuelQuantity <<Value Object>> {
+        - amount : double
+        - unit : FuelUnit
+
+    }
+
+    enum FuelUnit <<Value Object>> {
+        KG
+        L
+    }
+
+    enum FlightPlanStatus <<Value Object>> {
+        DRAFT
+        VALIDATED
+    }
+
+
+}
+
+Flight *-- FlightID
+Flight *-- Schedule
+Schedule <|-- RegularSchedule
+Schedule <|-- CharterSchedule
+
+FlightPlan *-- FuelQuantity
+Flight *-- "1..*" FlightPlan
+Flight *-- FlightType
+
+FuelQuantity --> FuelUnit
+FlightPlan --> FlightPlanStatus
+
+RegularSchedule *-- "1..*" ScheduleEntry
+FlightPlan *-- FlightPlanID
+
+
+@enduml

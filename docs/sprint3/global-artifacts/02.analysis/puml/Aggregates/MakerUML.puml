@@ -1,0 +1,66 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam classFontSize 13
+skinparam shadowing false
+
+skinparam class {
+    BackgroundColor<<Aggregate Root>> #E3F2FD
+    BorderColor<<Aggregate Root>> #1565C0
+    FontColor<<Aggregate Root>> #1565C0
+    HeaderBackgroundColor<<Aggregate Root>> #BBDEFB
+
+    BackgroundColor<<Entity>> #FFF8E1
+    BorderColor<<Entity>> #F57F17
+    FontColor<<Entity>> #F57F17
+    HeaderBackgroundColor<<Entity>> #FFE082
+
+    BackgroundColor<<Value Object>> #F1F8E9
+    BorderColor<<Value Object>> #558B2F
+    FontColor<<Value Object>> #558B2F
+    HeaderBackgroundColor<<Value Object>> #DCEDC8
+}
+
+skinparam package {
+    BackgroundColor #FAFAFA
+    BorderColor #BDBDBD
+    BorderStyle dashed
+    FontSize 14
+}
+
+
+skinparam ArrowColor #444441
+
+package "Maker Aggregate" <<Frame>> {
+
+    class Maker <<Aggregate Root>> {
+        - name : String
+        - makerID : MakerID
+        - country : Country
+        - makerType: Set<MakerType>
+    }
+
+    class MakerID <<Value Object>>{
+        - number : String
+    }
+
+    enum MakerType <<Value Object>>{
+        ENGINE
+        AIRCRAFT
+    }
+
+    class Country <<Value Object>>{
+        - isoCode : IsoCode
+        - name : String
+    }
+
+    class IsoCode <<Value Object>>{
+       - code : String
+    }
+
+Maker *-- MakerID
+Maker --> MakerType
+Country *-- IsoCode
+Maker *-- Country
+
+}
+@enduml

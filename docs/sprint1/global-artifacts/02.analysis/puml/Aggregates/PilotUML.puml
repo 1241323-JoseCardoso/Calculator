@@ -1,0 +1,71 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam classFontSize 13
+skinparam shadowing false
+
+skinparam class {
+    BackgroundColor<<Aggregate Root>> #E3F2FD
+    BorderColor<<Aggregate Root>> #1565C0
+    FontColor<<Aggregate Root>> #1565C0
+    HeaderBackgroundColor<<Aggregate Root>> #BBDEFB
+
+    BackgroundColor<<Entity>> #FFF8E1
+    BorderColor<<Entity>> #F57F17
+    FontColor<<Entity>> #F57F17
+    HeaderBackgroundColor<<Entity>> #FFE082
+
+    BackgroundColor<<Value Object>> #F1F8E9
+    BorderColor<<Value Object>> #558B2F
+    FontColor<<Value Object>> #558B2F
+    HeaderBackgroundColor<<Value Object>> #DCEDC8
+}
+
+skinparam package {
+    BackgroundColor #FAFAFA
+    BorderColor #BDBDBD
+    BorderStyle dashed
+    FontSize 14
+}
+
+
+skinparam ArrowColor #444441
+
+package "Pilot Aggregate" <<Frame>> {
+
+    class Pilot <<Aggregate Root>> {
+        - pilotID : PilotID
+        - userID : UserID
+        - currentCompanyIataCode : IataCode
+        - certifications : Set<Certification>
+        - status : PilotStatus
+        + isCertifiedFor(aircraftModelID: AircraftModelID, onDate: LocalDate) : boolean
+    }
+
+    class PilotID <<Value Object>> {
+        - number : String
+    }
+
+    class Certification <<Value Object>> {
+        - aircraftModelID : AircraftModelID
+        - pilotAircraftHours : int
+        - issuedAt : LocalDate
+        - validUntil : LocalDate
+    }
+
+    enum PilotStatus <<Value Object>> {
+        ACTIVE
+        INACTIVE
+    }
+
+    class IataCode <<ValueObject>>{
+       - code : String
+    }
+
+
+Pilot *-- "1..*" Certification
+Pilot --> PilotStatus
+Pilot *-- PilotID
+Pilot *-- IataCode
+
+}
+@enduml

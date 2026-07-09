@@ -81,6 +81,7 @@ As a user, I want to see 'ERR' displayed if any operation would exceed the 8 dig
 - Division by zero: Returns an error. The screen displays "ERR" or "E".
 - After an error: All functions lock. You must press AC or C to reset.
 - Number types: Accepts decimals. It is not limited to integers only.
+- eval() cannot be used to execute functions().
 
 ## 6. Learning Goals
 

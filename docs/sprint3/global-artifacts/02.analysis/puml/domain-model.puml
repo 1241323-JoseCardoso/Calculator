@@ -1,0 +1,273 @@
+@startuml AISafe_DomainModel
+
+skinparam classAttributeIconSize 0
+skinparam classFontSize 13
+skinparam shadowing false
+
+skinparam class {
+    BackgroundColor<<Aggregate Root>> #E3F2FD
+    BorderColor<<Aggregate Root>> #1565C0
+    FontColor<<Aggregate Root>> #1565C0
+    HeaderBackgroundColor<<Aggregate Root>> #BBDEFB
+
+    BackgroundColor<<Entity>> #FFF8E1
+    BorderColor<<Entity>> #F57F17
+    FontColor<<Entity>> #F57F17
+    HeaderBackgroundColor<<Entity>> #FFE082
+
+    BackgroundColor<<Value Object>> #F1F8E9
+    BorderColor<<Value Object>> #558B2F
+    FontColor<<Value Object>> #558B2F
+    HeaderBackgroundColor<<Value Object>> #DCEDC8
+}
+
+skinparam package {
+    BackgroundColor #FAFAFA
+    BorderColor #BDBDBD
+    BorderStyle dashed
+    FontSize 14
+}
+
+
+skinparam ArrowColor #444441
+
+
+package "User Aggregate" <<Frame>> {
+
+    class User <<Aggregate Root>> {
+        - email : Email
+        - userID : UserID
+        - name : String
+	    - phoneNumber: PhoneNumber
+        - roles : Set<Role>
+        - securityClearance : SecurityClearance
+        - latestSkillsAssessment : SkillsAssessment
+        - status : UserStatus
+    }
+
+
+
+}
+
+package "Maker Aggregate" <<Frame>> {
+
+    class Maker <<Aggregate Root>> {
+        - name : String
+        - makerID : MakerID
+        - country : Country
+        - makerType: Set<MakerType>
+    }
+}
+
+
+
+package "AirControlArea Aggregate" <<Frame>> {
+
+    class AirControlArea <<Aggregate Root>> {
+        - code : AirControlAreaCode
+        - geographicBounds : GeographicBoundary
+    }
+}
+
+package "Airport Aggregate" <<Frame>> {
+
+    class Airport <<Aggregate Root>> {
+        - name : String
+        - town : String
+        - country : Country
+        - airControlAreaCode : AirControlAreaCode
+        - iataCode : IataCode
+        - icaoCode : IcaoCode
+        - coordinates: Coordinates
+        - elevation: double
+    }
+}
+
+
+package "EngineModel Aggregate" <<Frame>> {
+
+    class EngineModel <<Aggregate Root>> {
+        - name : String
+        - engineModelID : EngineModelID
+        - type : EngineType
+        - power : double
+        - fuel : FuelType
+        - tsfc : double
+        - makerID : MakerID
+    }
+
+}
+
+package "AircraftModel Aggregate" <<Frame>> {
+
+    class AircraftModel <<Aggregate Root>> {
+        - modelID : AircraftModelID
+        - type : AircraftType
+        - emptyWeight : double
+        - mtow : double
+        - mzfw : double
+        - maxFuelCapacity : double
+        - serviceCeiling : double
+        - cruiseSpeed : double
+        - wingArea : double
+        - dragCoefficient : double
+        - liftCoefficient : double
+        - maximumRange : double
+        - maxPassengerCapacity : int
+        - certifiedEngineModelIDs : Set<EngineModelID>
+        - engineNumber : int
+        - makerID : MakerID
+    }
+
+}
+
+package "AirTransportCompany Aggregate" <<Frame>> {
+
+    class AirTransportCompany <<Aggregate Root>> {
+        - name : String
+        - iataCode : IataCode
+        - icaoCode : IcaoCode
+    }
+}
+
+package "Aircraft Aggregate" <<Frame>> {
+
+    class Aircraft <<Aggregate Root>> {
+        - registration : AircraftRegistration
+        - country : Country
+        - operationalStatus : OperationalStatus
+        - numCrewElements : int
+        - cabinConfiguration : CabinConfiguration
+        - aircraftModelID : AircraftModelID
+        - airTransportCompanyIataCode  : IataCode
+
+    }
+
+
+}
+
+package "Flight Aggregate" <<Frame>> {
+
+    class Flight <<Aggregate Root>> {
+        - flightID : FlightID
+        - type : FlightType
+        - routeCode : RouteCode
+        - schedule : Schedule
+    }
+
+
+    class FlightPlan <<Entity>> {
+        - flightPlanID : FlightPlanID
+        - status : FlightPlanStatus
+        - aircraftRegistration : AircraftRegistration
+        - pilotID : PilotID
+        - fuelQuantity : FuelQuantity
+        - plannedDeparture : LocalDateTime
+        - plannedArrival : LocalDateTime
+    }
+
+}
+
+package "FlightRoute Aggregate" <<Frame>> {
+
+    class FlightRoute <<Aggregate Root>> {
+        - routeCode : RouteCode
+        - status : RouteStatus
+        - departureAirportIataCode : IataCode
+        - arrivalAirportIataCode : IataCode
+        - airTransportCompanyIataCode : IataCode
+    }
+
+}
+
+package "FlightSimulation Aggregate" <<Frame>> {
+
+    class FlightSimulation <<Aggregate Root>> {
+        - flightSimulationID : FlightSimulationID
+        - airControlAreaCode : AirControlAreaCode
+        - status : SimulationStatus
+        - startedAt : LocalDateTime
+        - finishedAt : LocalDateTime
+    }
+
+
+
+    class FlightExecution <<Entity>> {
+        - flightExecutionID : FlightExecutionID
+        - flightPlanID : FlightPlanID
+        - status : FlightExecutionStatus
+        - fuelConsumed : double
+    }
+
+
+}
+
+package "Weather Aggregate" <<Frame>> {
+    class WeatherData <<Aggregate Root>> {
+        - collectedAt : LocalDateTime
+        - coordinates: Coordinates
+        - weatherDataID : WeatherDataID
+        - windDirection : double
+        - windSpeed : double
+        - temperature : double
+        - airControlAreaCode : AirControlAreaCode
+    }
+}
+
+package "Pilot Aggregate" <<Frame>> {
+
+    class Pilot <<Aggregate Root>> {
+        - pilotID : PilotID
+        - userID : UserID
+        - currentCompanyIataCode : IataCode
+        - certifications : Set<Certification>
+        - status : PilotStatus
+    }
+
+
+}
+
+package "ATCC Aggregate" <<Frame>> {
+
+    class ATCC <<Aggregate Root>> {
+        - atccID : ATCCID
+        - userID : UserID
+        - currentCompanyIataCode : IataCode
+        - position : String
+        - status : ATCCStatus
+    }
+}
+
+
+Flight --> FlightRoute : routeCode
+
+Flight *-- "1..*" FlightPlan
+FlightPlan --> Aircraft : aircraftRegistration
+FlightPlan --> Pilot : pilotID
+FlightSimulation *-- "1..*" FlightExecution
+
+
+FlightExecution --> FlightPlan : flightPlanID
+FlightSimulation --> AirControlArea : airControlAreaCode
+
+Aircraft --> AircraftModel : aircraftModelID
+Aircraft --> AirTransportCompany : airTransportCompanyIataCode
+
+EngineModel --> Maker : makerID
+
+AircraftModel --> Maker : makerID
+
+Airport --> AirControlArea : airControlAreaCode
+
+Pilot --> User : userID
+Pilot --> AirTransportCompany : currentCompanyIataCode
+
+ATCC --> User : userID
+ATCC --> AirTransportCompany : currentCompanyIataCode
+
+WeatherData --> AirControlArea : airControlAreaCode
+
+FlightRoute --> Airport : departureAirportIataCode
+FlightRoute --> Airport : arrivalAirportIataCode
+FlightRoute --> AirTransportCompany : airTransportCompanyIataCode
+@enduml
