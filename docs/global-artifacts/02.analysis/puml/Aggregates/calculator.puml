@@ -35,10 +35,23 @@ package "Calculator" <<Frame>>{
 
         class Calculator <<Aggregate Root>>{
 
-            - id : CalculatorID
-            - calculations : ArrayList<Calculation>
-            - currentInput : Double
+            - currentInput : CalculatorInput
             - pendingOperator : OperatorType
+            - status : CalculatorStatus
+            - displayValue : DisplayValue
+            - storedValue : Double
+        }
+
+
+        class DisplayValue <<Value Object>>{
+
+            - value : String
+
+        }
+
+        class CalculatorInput <<Value Object>>{
+
+            - rawInput : String
 
         }
 
@@ -52,27 +65,22 @@ package "Calculator" <<Frame>>{
         }
 
         enum OperatorType <<Value Object>>{
-            +
-            -
-            /
-            *
+            ADD
+            SUBTRACT
+            DIVIDE
+            MULTIPLY
         }
 
-        class Result <<Value Object>>{
-
-            - result : Double
-
-        }
-
-        enum ResultStatus <<Value Object>>{
-            SUCCESS
+        enum CalculatorStatus <<Value Object>>{
+            READY
             ERR
         }
 
-ResultStatus --> Result
-Result --* Calculation
-OperatorType --* Calculation
-Calculation --* Calculator
+Calculator *-- OperatorType
+Calculator *-- CalculatorStatus
+Calculator "1" *-- "0..*" Calculation
+Calculator *-- CalculatorInput
+Calculator *-- DisplayValue
 
 }
 

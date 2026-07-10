@@ -35,43 +35,52 @@ package "Calculator" <<Frame>>{
 
         class Calculator <<Aggregate Root>>{
 
-            - id : CalculatorID
-            - results : ArrayList<Result>
+            - currentInput : CalculatorInput
+            - pendingOperator : OperatorType
+            - status : CalculatorStatus
+            - displayValue : DisplayValue
+            - storedValue : Double
+        }
+
+
+        class DisplayValue <<Value Object>>{
+
+            - value : String
 
         }
 
-        class Result <<Value Object>>{
+        class CalculatorInput <<Value Object>>{
 
-            - operator : String
-            - numberOne : Number
-            - numberTwo : Number
-            - result : Integer
+            - rawInput : String
 
         }
 
-        class Operator <<Value Object>>{
+        class Calculation <<Value Object>>{
 
-            - operator : String
-
-        }
-
-        class Number <<Value Object>>{
-
-            - number : int
-            - signal : String
+            - operator : OperatorType
+            - numberOne : Double
+            - numberTwo : Double
+            - result : Double
 
         }
 
-        class CalculatorID <<Value Object>>{
-
-            - code : String
+        enum OperatorType <<Value Object>>{
+            ADD
+            SUBTRACT
+            DIVIDE
+            MULTIPLY
         }
 
-Operator --* Result
-Number --* Result
-Number --* Result
-Result --* Calculator
-CalculatorID --* Calculator
+        enum CalculatorStatus <<Value Object>>{
+            READY
+            ERR
+        }
+
+Calculator *-- OperatorType
+Calculator *-- CalculatorStatus
+Calculator "1" *-- "0..*" Calculation
+Calculator *-- CalculatorInput
+Calculator *-- DisplayValue
 
 }
 
