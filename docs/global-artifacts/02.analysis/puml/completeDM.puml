@@ -1,4 +1,5 @@
-@startuml
+@startuml Calculator
+
 skinparam classAttributeIconSize 0
 skinparam classFontSize 13
 skinparam shadowing false
@@ -30,37 +31,50 @@ skinparam package {
 
 skinparam ArrowColor #444441
 
-package "Maker Aggregate" <<Frame>> {
+package "Calculator" <<Frame>>{
 
-    class Maker <<Aggregate Root>> {
-        - name : String
-        - makerID : MakerID
-        - country : Country
-        - makerType: Set<MakerType>
-    }
+        class Calculator <<Aggregate Root>>{
 
-    class MakerID <<Value Object>>{
-        - number : String
-    }
+            - id : CalculatorID
+            - results : ArrayList<Result>
 
-    enum MakerType <<Value Object>>{
-        ENGINE
-        AIRCRAFT
-    }
+        }
 
-    class Country <<Value Object>>{
-        - isoCode : IsoCode
-        - name : String
-    }
+        class Result <<Value Object>>{
 
-    class IsoCode <<Value Object>>{
-       - code : String
-    }
+            - operator : String
+            - numberOne : Number
+            - numberTwo : Number
+            - result : Integer
 
-Maker *-- MakerID
-Maker --> MakerType
-Country *-- IsoCode
-Maker *-- Country
+        }
+
+        class Operator <<Value Object>>{
+
+            - operator : String
+
+        }
+
+        class Number <<Value Object>>{
+
+            - number : int
+            - signal : String
+
+        }
+
+        class CalculatorID <<Value Object>>{
+
+            - code : String
+        }
+
+Operator --* Result
+Number --* Result
+Number --* Result
+Result --* Calculator
+CalculatorID --* Calculator
 
 }
+
+
+
 @enduml
