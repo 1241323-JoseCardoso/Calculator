@@ -1,0 +1,28 @@
+@startuml "Calculator_Use_Cases"
+left to right direction
+skinparam actorStyle awesome
+
+actor "User" as US
+
+
+  package "Calculator" as wCA {
+    usecase "View current number" as UC01
+    usecase "Use Entry Pad" as UC02
+    usecase "Clicking in the Entry Pad" as UC03
+    usecase "Perform Operation Result" as UC04
+    usecase "'C' Button" as UC05
+    usecase "'AC' Button" as UC06
+    usecase "Handle 'ERR'" as UC07
+
+  }
+
+US --> UC01
+US --> UC02
+US --> UC03
+US --> UC04
+US --> UC05
+US --> UC06
+US --> UC07
+
+
+@enduml
