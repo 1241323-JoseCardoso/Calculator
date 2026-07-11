@@ -35,28 +35,29 @@ package "Calculator" <<Frame>>{
 
         class Calculator <<Aggregate Root>>{
 
-            - currentInput : CalculatorInput
-            - calculations : List<Calculation>
-            - pendingOperator : OperatorType
-            - status : CalculatorStatus
-            - displayValue : DisplayValue
-            - storedValue : Double
+                - input : CalculatorInput
+                - calculationList : List<Calculation>
+                - opType : OperatorType
+                - status : CalculatorStatus
+                - displayValue : DisplayValue
+                - storedValue : Double
+                - hasOp : boolean
 
         }
 
         class Calculation <<Value Object>>{
 
-            - firstNumber : Double
-            - secondNumber : Double
-            - operator : OperatorType
-            - result : Double
+    - firstNumber : Double
+    - secondNumber : Double
+    - opType : OperatorType
+    - result : Double
 
         }
 
         class CalculatorInput <<Value Object>>{
 
-            - rawInput : String
-            - dot : boolean
+         - input : String
+         - dot : boolean
 
 
         }

@@ -12,7 +12,6 @@ public class Calculation {
         this.firstNumber = firstNumber;
         this.secondNumber = secondNumber;
         this.opType = opType;
-
         this.result = result();
 
     }

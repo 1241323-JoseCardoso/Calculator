@@ -74,19 +74,208 @@ As a user, I want to see 'ERR' displayed if any operation would exceed the 8 dig
 - JUnit
 - JavaFX, optional/future UI
 
-## 5. Project Scope Clarifications
+## 5. Business Rules
 
-- Operation mode: Sequential execution. Operations are processed immediately as entered. It does not evaluate full expressions.
-- Digit limit: Applies to both. Input and results are limited to 8 digits max.
-- Division by zero: Returns an error. The screen displays "ERR" or "E".
-- After an error: All functions lock. You must press AC or C to reset.
-- Number types: Accepts decimals. It is not limited to integers only.
-- eval() cannot be used to execute functions().
+### Input Rules
 
-## 6. Learning Goals
+- The calculator accepts digits from `0` to `9`.
+- The calculator accepts decimal numbers.
+- A number may contain only one decimal separator.
+- A user-entered number may contain at most 8 numeric digits.
+- The decimal separator does not count as a numeric digit.
+- Extra digits beyond the limit are ignored.
 
-- Practice Requirement Analysis
-- Practice user stories and acceptance criteria
-- Apply basic object-oriented design
-- Separate UI concerns from calculation logic
-- Write unit tests for core behaviors.
+### Operation Rules
+
+- The calculator supports `+`, `-`, `*` and `/`.
+- Operations are evaluated sequentially.
+- Full expression parsing is not supported.
+- Division by zero is invalid and results in `ERR`.
+
+### Display Rules
+
+- The calculator starts with display value `0`.
+- The display shows the current input while the user enters a number.
+- The display shows the selected operator after an operator is pressed.
+- The display shows the result after a calculation is completed.
+- The display shows `ERR` when the calculator enters an error state.
+
+### Result Rules
+
+- A calculated result is valid if its integer part has at most 8 digits.
+- If the integer part has more than 8 digits, the calculator enters `ERR`.
+- If the integer part fits but the decimal part is too long, the result is rounded to fit the calculator display rule.
+
+### Error Rules
+
+- When the calculator is in `ERR` state, normal numeric and operator input is ignored.
+- The calculator can leave `ERR` state using `C` or `AC`.
+
+---
+
+## 6. Architecture
+
+The project follows a simple layered architecture:
+
+Presentation
+↓
+Application
+↓
+Domain
+
+### Presentation Layer
+
+Responsible for user interaction.
+
+Examples:
+
+- displaying the calculator interface;
+- receiving button click events;
+- showing the display value returned by the controller.
+
+The presentation layer must not contain calculation rules.
+
+### Application Layer
+
+Responsible for coordinating user actions.
+
+Main responsibilities:
+
+- receiving input from the presentation layer;
+- calling the application service;
+- returning the updated display value.
+
+Current application classes:
+
+- `CalculatorController`
+- `CalculatorService`
+
+### Domain Layer
+
+Responsible for the calculator rules and state.
+
+Main responsibilities:
+
+- managing the current input;
+- managing the stored value;
+- managing the pending operator;
+- calculating results;
+- validating invalid operations;
+- updating the display value;
+- managing the calculator status.
+
+Current domain classes:
+
+- `Calculator`
+- `CalculatorInput`
+- `DisplayValue`
+- `Calculation`
+- `OperatorType`
+- `CalculatorStatus`
+
+---
+
+## 7. Domain Model Summary
+
+The calculator core is centered around the `Calculator` aggregate.
+
+The `Calculator` is responsible for maintaining the current state of the calculation and protecting the business rules of the system.
+
+Main domain concepts:
+
+| Concept | Responsibility |
+| :--- | :--- |
+| `Calculator` | Aggregate root that coordinates the calculator state and operations. |
+| `CalculatorInput` | Represents the number currently being entered by the user. |
+| `DisplayValue` | Represents the value currently shown on the display. |
+| `Calculation` | Represents a completed arithmetic operation. |
+| `OperatorType` | Represents the supported arithmetic operators. |
+| `CalculatorStatus` | Represents whether the calculator is ready or in error state. |
+
+The full domain model is available in the documentation folder.
+
+---
+
+## 8. Documentation
+
+Additional documentation is available in the `docs/` folder:
+
+- [Glossary](docs/global-artifacts/01.requirements-engineering/glossary.md)
+- [Use Case Diagram](docs/global-artifacts/01.requirements-engineering/use-case-diagram.md)
+- [Domain Model](docs/02.analysis/puml/dm/completeDM.md)
+- [Design Class Diagram](docs/02.analysis/puml/global-class-diagram/CD_general.md)
+
+---
+
+## 9. Technologies
+
+- Java
+- Maven
+- JUnit 5
+- JavaFX planned for the presentation layer
+- PlantUML for diagrams
+
+---
+
+## 10. Running Tests
+
+To run the automated tests:
+
+mvn test
+
+To compile the project:
+
+mvn compile
+
+---
+
+## 11. Current Development Status
+
+The calculator core is under development.
+
+Implemented or partially implemented:
+
+- initial display value;
+- numeric input;
+- decimal input;
+- arithmetic operations;
+- result display;
+- digit limit;
+- division by zero handling;
+- error display;
+- clear and clear all behaviour;
+- unit tests for core behaviours.
+
+Planned next steps:
+
+- review and clean domain logic;
+- update diagrams according to the implementation;
+- improve test coverage;
+- implement the JavaFX presentation layer;
+- polish README and documentation;
+- add screenshots or demo GIF.
+
+---
+
+## 12. Learning Goals
+
+This project is used to practice:
+
+- requirements analysis;
+- user stories and acceptance criteria;
+- domain modelling;
+- object-oriented design;
+- layered architecture;
+- TDD basics;
+- unit testing with JUnit;
+- incremental development;
+- Git commit discipline;
+- separation between presentation, application and domain logic.
+
+---
+
+## 13. Notes
+
+This project intentionally uses a simple architecture. The goal is not to overengineer a calculator, but to practice building a small application with clear responsibilities, testable domain logic and maintainable structure.
+
+The design may evolve as implementation progresses.

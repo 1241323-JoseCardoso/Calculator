@@ -96,25 +96,33 @@ package "Domain" <<Frame>>{
 class CalculatorService <<Service>> {
 
     - calculator : Calculator
+    - map : HashMap<String, OperatorType>
     + update(digit) : void
+    + getCalculatorDisplayValue() : String
 
 }
 
 class Calculator <<Aggregate Root>>{
 
-    - currentInput : CalculatorInput
-    - calculations : List<Calculation>
-    - pendingOperator : OperatorType
+    - input : CalculatorInput
+    - calculationList : List<Calculation>
+    - opType : OperatorType
     - status : CalculatorStatus
     - displayValue : DisplayValue
     - storedValue : Double
+    - hasOp : boolean
 
-    + calculate() : void
-    + selectOperator(operator) : void
-    + updateDisplayValue(digit) : void
-    + updateCurrentInput(digit) : void
-    + updateStoredValue(digit) : void
-    + updateStatus(status) : void
+    + resultHandler() : void
+    + input() : String
+    + displayValue() : String
+    + defineOperatorType(operatorType) : void
+    + hasOp() : boolean
+    + signalHandler(digit) : void
+    + dotHandler(digit) : void
+    + numberHandler(digit) : void
+    + nDigits() : void
+    + reset() : void
+    + deleteLastDigit() : void
 
 }
 
@@ -122,17 +130,20 @@ class Calculation <<Value Object>>{
 
     - firstNumber : Double
     - secondNumber : Double
-    - operator : OperatorType
+    - opType : OperatorType
     - result : Double
 
-    + resultValue() : void
+    - resultValue() : void
+    # getResult() : double
 
 }
 
 class CalculatorInput <<Value Object>>{
 
-    - rawInput : String
+    - input : String
     - dot : boolean
+    + nDigits() : int
+    + input() : String
     + hasDot() : boolean
     + setDot() : void
 
@@ -150,6 +161,7 @@ enum OperatorType <<Value Object>>{
 class DisplayValue <<Value Object>>{
 
     - currentValue : String
+    + getValue() : String
 }
 
 enum CalculatorStatus <<Value Object>>{
