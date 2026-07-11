@@ -85,18 +85,9 @@ class CalculatorController <<Controller>> {
 
     - service : CalculatorService
 
-    - toDTO() : CalculatorDTO
-    + pressDigit(digit) : CalculatorDTO
+    + pressDigit(digit) : String
 
 }
-
-class CalculatorDTO <<Data Transfer Object>>{
-
-    - operator : String
-    - displayValue : String
-
-}
-
 
 }
 
@@ -180,7 +171,6 @@ CalculatorUI "1" --> "1" CalculatorController
 CalculatorUI "1" --> "1" EntryPad
 EntryPad *-- Buttons
 CalculatorService --> Calculator
-CalculatorDTO --> CalculatorController : Created by controller
 
 
 @enduml
