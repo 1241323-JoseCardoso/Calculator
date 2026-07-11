@@ -1,7 +1,10 @@
-# US01 - Current Number
+# US01 - Current Number && US03 - Clicking in the Entry Pad
+
 ## 1. Context
 
 As a User, I want to see a display showing the current number entered or the result of the last operation, so that I can see what I am doing.
+
+As a User, I want to enter numerical sequences of up to 8 digits, so that I can perform calculations across different whole number place values.
 
 ---
 
@@ -9,13 +12,16 @@ As a User, I want to see a display showing the current number entered or the res
 
 **US01** As a User, I want to see a display showing the current number entered or the result of the last operation, so that I can see what I am doing.
 
+**US03** As a User, I want to enter numerical sequences of up to 8 digits, so that I can perform calculations across different whole number place values.
+
 **Acceptance Criteria:**
 
 - US01.1 When the calculator starts, the display must show 0.
 - US01.2 When the user presses a numeric button (0-9), the display must show the entered digit.
-- US01.3 When the user enters multiple digits, the dis
-- US01.4 The display must accept numbers with a maximum of 8 digits. Additional digits must be ignored.
-- US01.5 After an arithmetic operation is completed, the display must show the calculated result.
+- US01.3 The display must accept numbers with a maximum of 8 digits. Additional digits must be ignored.
+- US01.4 After an arithmetic operation is completed, the display must show the calculated result.
+
+- US03.1 Entry of any digits more than 8 will be ignored.
 
 ---
 
