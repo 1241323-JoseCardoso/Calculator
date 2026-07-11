@@ -125,15 +125,11 @@ Domain
 
 ### Presentation Layer
 
-Responsible for user interaction.
+The presentation layer will implement US02 - Entry Pad using JavaFX.
 
-Examples:
+The UI will display the calculator display and a button grid containing digits, operators, equals, clear and clear all actions. Button clicks will be forwarded to the application layer through the `CalculatorController`.
 
-- displaying the calculator interface;
-- receiving button click events;
-- showing the display value returned by the controller.
-
-The presentation layer must not contain calculation rules.
+No calculation logic will be implemented inside the UI.
 
 ### Application Layer
 
@@ -203,7 +199,7 @@ Additional documentation is available in the `docs/` folder:
 - [Glossary](docs/global-artifacts/01.requirements-engineering/glossary.md)
 - [Use Case Diagram](docs/global-artifacts/01.requirements-engineering/use-case-diagram.md)
 - [Domain Model](docs/02.analysis/puml/dm/completeDM.md)
-- [Design Class Diagram](docs/02.analysis/puml/global-class-diagram/CD_general.md)
+- [Design Class Diagram](docs/02.analysis/puml/global-class-diagram/CD_general,.md)
 
 ---
 
