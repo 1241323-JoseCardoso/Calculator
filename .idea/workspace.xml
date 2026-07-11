@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa3d635b-2507-45ac-877d-f1ace09f4ef8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/global-artifacts/01.requirements-engineering/svg/Calculator_Use_Cases.png" beforeDir="false" afterPath="$PROJECT_DIR$/docs/global-artifacts/01.requirements-engineering/png/Calculator_Use_Cases.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/global-artifacts/01.requirements-engineering/use-case-diagram.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/global-artifacts/01.requirements-engineering/use-case-diagram.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/global-artifacts/02.analysis/puml/global-class-diagram/CD_general.puml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/global-artifacts/02.analysis/puml/global-class-diagram/CD_general.puml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/us001/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/us001&amp;&amp;us003/readme.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/us003/readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/calculator/application/CalculatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/calculator/application/CalculatorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/calculator/domain/Calculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/calculator/domain/Calculator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +47,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.ConsoleApp.executor": "Run",
     "JUnit.CalculatorTest.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -110,7 +107,7 @@
       <updated>1783631784147</updated>
       <workItem from="1783631785292" duration="502000" />
       <workItem from="1783769392208" duration="4677000" />
-      <workItem from="1783774117745" duration="15870000" />
+      <workItem from="1783774117745" duration="25775000" />
     </task>
     <servers />
   </component>

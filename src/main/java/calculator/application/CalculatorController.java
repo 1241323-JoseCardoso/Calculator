@@ -20,4 +20,9 @@ public class CalculatorController {
 
     }
 
+    public String value(){
+
+        return service.getCalculatorDisplayValue();
+    }
+
 }

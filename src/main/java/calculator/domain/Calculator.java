@@ -120,9 +120,20 @@ public class Calculator {
 
     public void numberHandler(String digit){
 
-        input = new CalculatorInput(input().input() + digit, input.hasDot());
+        if(input.input().equals("0") && input.nDigits() == 1 && !input.hasDot()){
 
-        displayValue = new DisplayValue(input.input());
+            input = new CalculatorInput(digit);
+
+            displayValue = new DisplayValue(digit);
+        }else{
+
+            input = new CalculatorInput(input().input() + digit, input.hasDot());
+
+            displayValue = new DisplayValue(input.input());
+
+        }
+
+
 
     }
 
@@ -155,6 +166,12 @@ public class Calculator {
 
             String inputA = input().input();
             inputA = inputA.substring(0, inputA.length() - 1);
+
+            if(inputA.isEmpty()){
+
+                inputA = "0";
+
+            }
 
             displayValue = new DisplayValue(inputA);
             input = new CalculatorInput(inputA);
