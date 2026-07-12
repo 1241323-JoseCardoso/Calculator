@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa3d635b-2507-45ac-877d-f1ace09f4ef8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/images/javafx-interface.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/calculator/presentation/CalculatorApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/calculator/presentation/CalculatorApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/calculator/presentation/CalculatorViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/calculator/presentation/CalculatorViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/calculator/presentation/CalculatorView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/calculator/presentation/CalculatorView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,9 +50,11 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.CalculatorApp.executor": "Run",
     "Application.ConsoleApp.executor": "Run",
     "JUnit.CalculatorTest.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -106,7 +113,7 @@
       <updated>1783631784147</updated>
       <workItem from="1783631785292" duration="502000" />
       <workItem from="1783769392208" duration="4677000" />
-      <workItem from="1783774117745" duration="27610000" />
+      <workItem from="1783774117745" duration="29953000" />
     </task>
     <servers />
   </component>

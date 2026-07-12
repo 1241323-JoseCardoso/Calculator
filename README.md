@@ -6,6 +6,22 @@ Calculators are not only one of the most useful tools available, but they are al
 
 The aim of this project is to review and apply concepts covered in the software engineering and application courses, in order to simulate a real-world development environment and bridge the gap between academic theory and professional practice. To this end, a simple calculator will be developed.
 
+## Screenshots
+
+### JavaFX Interface
+
+<p align="center">
+  <img src="docs/images/javafx-interface.png" alt="Calculator JavaFX Interface" width="400"/>
+</p>
+
+### Calculation Example
+
+Result for `5 + 5` -
+
+<p align="center">
+  <img src="docs/images/javafx-calculation-result.png" alt="Calculator Result Example" width="400"/>
+</p>
+
 ## 2. MVP (Minimum Viable Product)
 
 The basic version can:
@@ -21,7 +37,19 @@ The basic version can:
 
 Operations involving trigonometric functions, probabilities and complex numbers are outside the scope.
 
-## 4. User Stories
+## 4. Features
+
+- Basic arithmetic operations: addition, subtraction, multiplication and division
+- Decimal number input
+- Sequential operation execution
+- 8-digit input limit
+- Error handling with `ERR`
+- Clear current input with `C`
+- Reset calculator state with `AC`
+- Console interface
+- JavaFX graphical interface
+
+## 5. User Stories
 
 ### US01 - Current Number
 
@@ -68,13 +96,7 @@ As a user, I want to click the 'AC' button to clear all internal work areas and 
 
 As a user, I want to see 'ERR' displayed if any operation would exceed the 8 digit maximum.
 
-## Technologies
-
-- Java
-- JUnit
-- JavaFX, optional/future UI
-
-## 5. Business Rules
+## 6. Business Rules
 
 ### Input Rules
 
@@ -113,7 +135,7 @@ As a user, I want to see 'ERR' displayed if any operation would exceed the 8 dig
 
 ---
 
-## 6. Architecture
+## 7. Architecture
 
 The project follows a simple layered architecture:
 
@@ -125,7 +147,7 @@ Domain
 
 ### Presentation Layer
 
-The presentation layer will implement US02 - Entry Pad using JavaFX.
+The presentation layer implements US02 - Entry Pad using JavaFX.
 
 The UI will display the calculator display and a button grid containing digits, operators, equals, clear and clear all actions. Button clicks will be forwarded to the application layer through the `CalculatorController`.
 
@@ -171,7 +193,7 @@ Current domain classes:
 
 ---
 
-## 7. Domain Model Summary
+## 8. Domain Model Summary
 
 The calculator core is centered around the `Calculator` aggregate.
 
@@ -192,68 +214,54 @@ The full domain model is available in the documentation folder.
 
 ---
 
-## 8. Documentation
+## 9. Documentation
 
 Additional documentation is available in the `docs/` folder:
 
 - [Glossary](docs/global-artifacts/01.requirements-engineering/glossary.md)
 - [Use Case Diagram](docs/global-artifacts/01.requirements-engineering/use-case-diagram.md)
-- [Domain Model](docs/02.analysis/puml/dm/completeDM.md)
-- [Design Class Diagram](docs/02.analysis/puml/global-class-diagram/CD_general,.md)
+- [Domain Model](docs/global-artifacts/02.analysis/puml/dm/completeDM.md)
+- [Design Class Diagram](docs/global-artifacts/02.analysis/puml/global-class-diagram/CD_general.md)
 
 ---
 
-## 9. Technologies
+## 10. Technologies
 
 - Java
 - Maven
 - JUnit 5
-- JavaFX planned for the presentation layer
+- JavaFX
 - PlantUML for diagrams
 
 ---
 
-## 10. Running Tests
+## 11. Running the Application
+
+To run the JavaFX application:
+
+`mvn javafx:run`
+
+To run the console interface, run the following class from the IDE:
+
+`calculator.presentation.ConsoleApp`
+
+The JavaFX application is the main user interface of the project.
+
+---
+
+## 12. Running Tests
 
 To run the automated tests:
 
-mvn test
+`mvn test`
 
 To compile the project:
 
-mvn compile
+`mvn compile`
 
 ---
 
-## 11. Current Development Status
-
-The calculator core is under development.
-
-Implemented or partially implemented:
-
-- initial display value;
-- numeric input;
-- decimal input;
-- arithmetic operations;
-- result display;
-- digit limit;
-- division by zero handling;
-- error display;
-- clear and clear all behaviour;
-- unit tests for core behaviours.
-
-Planned next steps:
-
-- review and clean domain logic;
-- update diagrams according to the implementation;
-- improve test coverage;
-- implement the JavaFX presentation layer;
-- polish README and documentation;
-- add screenshots or demo GIF.
-
----
-
-## 12. Learning Goals
+## 13. Learning Goals
 
 This project is used to practice:
 
@@ -270,7 +278,7 @@ This project is used to practice:
 
 ---
 
-## 13. Notes
+## 14. Notes
 
 This project intentionally uses a simple architecture. The goal is not to overengineer a calculator, but to practice building a small application with clear responsibilities, testable domain logic and maintainable structure.
 

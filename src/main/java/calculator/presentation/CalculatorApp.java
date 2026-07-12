@@ -15,7 +15,7 @@ public class CalculatorApp extends Application {
 
         Scene scene = new Scene(loader.load());
 
-        stage.setTitle("Calculator");
+        stage.setTitle("Calculadora Cardosiana");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();

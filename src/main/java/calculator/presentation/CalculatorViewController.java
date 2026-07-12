@@ -3,7 +3,9 @@ package calculator.presentation;
 import calculator.application.CalculatorController;
 import calculator.domain.CalculatorService;
 import calculator.domain.Calculator;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class CalculatorViewController {
@@ -23,9 +25,8 @@ public class CalculatorViewController {
     }
 
     @FXML
-    private void handleButtonClick(javafx.event.ActionEvent event) {
-        javafx.scene.control.Button button =
-                (javafx.scene.control.Button) event.getSource();
+    private void handleButtonClick(ActionEvent event) {
+        Button button = (Button) event.getSource();
 
         String value = button.getText();
 
