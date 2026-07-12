@@ -1,5 +1,7 @@
 # US01 - Current Number && US03 - Clicking in the Entry Pad
 
+This document represent's all user stories, with exception of user story 2, that's represent's an user story of the presentation layer. 
+
 ## 1. Context
 
 As a User, I want to see a display showing the current number entered or the result of the last operation, so that I can see what I am doing.
