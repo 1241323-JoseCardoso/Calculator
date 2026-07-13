@@ -139,11 +139,7 @@ As a user, I want to see 'ERR' displayed if any operation would exceed the 8 dig
 
 The project follows a simple layered architecture:
 
-Presentation
-↓
-Application
-↓
-Domain
+Presentation -> Application -> Domain
 
 ### Presentation Layer
 
